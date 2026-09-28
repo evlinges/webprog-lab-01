@@ -1,0 +1,15 @@
+const { Router } = require('express');
+const ctrl = require('../controllers/client.controller');
+const validate = require('../utils/validate');
+const v = require('../validators/client.validator');
+
+const router = Router();
+
+router.get('/', validate(v.list), ctrl.list);
+router.post('/', validate(v.create), ctrl.create);
+router.get('/:id', validate(v.byId), ctrl.getById);
+router.put('/:id', validate(v.update), ctrl.update);
+router.patch('/:id', validate(v.update), ctrl.update);
+router.delete('/:id', validate(v.byId), ctrl.remove);
+
+module.exports = router;
